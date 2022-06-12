@@ -30,8 +30,12 @@ public class BasketUtils {
         return Arguments.of("no items", "0.00", Collections.emptyList());
     }
 
-       public static Item aPintOfMilk() {
-        return new IndividualProduct("milk", new BigDecimal("0.49")).oneOf();
+    public static IndividualProduct productPintOfMilk() {
+        return new IndividualProduct("milk", new BigDecimal("0.49"));
+    }
+
+    public static Item aPintOfMilk() {
+        return productPintOfMilk().oneOf();
     }
 
     public static Item aPackOfDigestives() {
@@ -52,5 +56,15 @@ public class BasketUtils {
 
     public static Item twoHundredGramsOfPickAndMix() {
         return aKiloOfPickAndMix().weighing(new BigDecimal(".2"));
+    }
+
+
+    static ActiveDiscount bogofMilk() {
+        return new BogofDiscount(BasketUtils.productPintOfMilk());
+    }
+
+    static Discount bogofMilkDiscount() {
+        return new Discount("Buy One, Get One Free: " + BasketUtils.aPintOfMilk().sku(),
+                BasketUtils.productPintOfMilk().pricePerUnit().negate());
     }
 }
