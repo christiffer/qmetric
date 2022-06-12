@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 /**
  * Buy One, Get One Free
  */
-public class BogofDiscount implements ActiveDiscount{
+public class BogofDiscount implements ActiveDiscount {
 
     private final IndividualProduct product;
 
@@ -23,11 +23,11 @@ public class BogofDiscount implements ActiveDiscount{
 
         int howManyDiscounts = (int) (validItems / 2);
 
-        if(howManyDiscounts == 0) {
+        if (howManyDiscounts == 0) {
             return Collections.emptyList();
         }
 
-        Discount discount = new Discount("Buy One, Get One Free: " + product.sku(),product.pricePerUnit().negate());
+        Discount discount = new Discount("Buy One, Get One Free: " + product.sku(), product.pricePerUnit().negate());
         return IntStream.rangeClosed(0, howManyDiscounts - 1)
                 .mapToObj(i -> discount)
                 .toList();

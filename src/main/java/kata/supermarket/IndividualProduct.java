@@ -8,7 +8,7 @@ public class IndividualProduct implements Product {
     private final String sku;
 
     public IndividualProduct(String sku, final BigDecimal pricePerUnit) {
-        this.sku=sku;
+        this.sku = sku;
         this.pricePerUnit = pricePerUnit;
     }
 
